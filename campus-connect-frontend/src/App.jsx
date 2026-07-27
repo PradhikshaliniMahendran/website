@@ -9,6 +9,8 @@ import { AttendanceScannerModal } from './components/registration/AttendanceScan
 import { ApprovalQueueModal } from './components/venues/ApprovalQueueModal';
 import { QRCodeModal } from './components/registration/QRCodeModal';
 import { LoginModal } from './components/auth/LoginModal';
+import { EventCalendarView } from './components/events/EventCalendarView';
+import { UserRoleManagementView } from './components/admin/UserRoleManagementView';
 import { ClubFeedView } from './components/clubs/ClubFeedView';
 import { VenuesView } from './components/venues/VenuesView';
 import { MyTicketsView } from './components/registration/MyTicketsView';
@@ -83,7 +85,7 @@ export function App() {
               <p className="text-[11px] opacity-80">
                 {mongoConnected
                   ? 'All registrations, event creations, and certificates are synced with MongoDB 6.0.'
-                  : 'Full state engine active. Connect Spring Boot server on localhost:8080 for live DB persistence.'}
+                  : 'Full state engine active. Midhurshan & Shalini modules combined. Connect Spring Boot backend for DB sync.'}
               </p>
             </div>
           </div>
@@ -109,13 +111,13 @@ export function App() {
             <div className="relative rounded-3xl overflow-hidden bg-nexus-gradient p-8 md:p-10 text-white shadow-nexus">
               <div className="max-w-2xl space-y-3 relative z-10">
                 <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3 py-1 rounded-full text-xs font-bold text-campus-gold">
-                  <Sparkles className="w-3.5 h-3.5" /> University Event Management Platform
+                  <Sparkles className="w-3.5 h-3.5" /> Integrated University Event Management Platform
                 </div>
                 <h1 className="font-heading font-extrabold text-3xl sm:text-4xl leading-tight">
                   Plan, Organize & Join Campus Events
                 </h1>
                 <p className="text-sm text-blue-100 leading-relaxed">
-                  The centralized platform for event proposals, venue slot allocation, ticket registration, live QR attendance check-ins, and verified student credentials.
+                  The centralized platform for event proposals, venue slot allocation, ticket registration, live QR attendance check-ins, master calendar, and verified credentials.
                 </p>
                 <div className="pt-2 flex flex-wrap gap-3">
                   <button
@@ -194,12 +196,14 @@ export function App() {
           </div>
         )}
 
-        {/* OTHER TABS */}
+        {/* OTHER INTEGRATED TABS */}
+        {activeTab === 'calendar' && <EventCalendarView onOpenCreateEvent={() => setIsCreateOpen(true)} />}
         {activeTab === 'clubs' && <ClubFeedView />}
         {activeTab === 'venues' && <VenuesView />}
         {activeTab === 'my-tickets' && <MyTicketsView />}
         {activeTab === 'certificates' && <CertificatesView />}
         {activeTab === 'analytics' && <AnalyticsView />}
+        {activeTab === 'users' && <UserRoleManagementView />}
         {activeTab === 'profile' && <ProfileView />}
 
       </main>

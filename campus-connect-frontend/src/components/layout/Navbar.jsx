@@ -15,7 +15,9 @@ import {
   LogOut,
   ChevronDown,
   User,
-  ShieldCheck
+  ShieldCheck,
+  CalendarDays,
+  UserCheck
 } from 'lucide-react';
 
 export const Navbar = ({ 
@@ -69,6 +71,15 @@ export const Navbar = ({
             </button>
 
             <button
+              onClick={() => setActiveTab('calendar')}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                activeTab === 'calendar' ? 'bg-campus-gold text-white shadow-gold' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+              }`}
+            >
+              <CalendarDays className="w-3.5 h-3.5 text-campus-teal" /> Calendar
+            </button>
+
+            <button
               onClick={() => setActiveTab('clubs')}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                 activeTab === 'clubs' ? 'bg-campus-gold text-white shadow-gold' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
@@ -94,6 +105,17 @@ export const Navbar = ({
             >
               <BarChart3 className="w-3.5 h-3.5" /> Analytics
             </button>
+
+            {isAdmin && (
+              <button
+                onClick={() => setActiveTab('users')}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  activeTab === 'users' ? 'bg-campus-gold text-white shadow-gold' : 'text-purple-300 hover:bg-slate-800 hover:text-white'
+                }`}
+              >
+                <UserCheck className="w-3.5 h-3.5 text-purple-400" /> Users & Roles
+              </button>
+            )}
           </nav>
 
           {/* 3. Compact Action Cluster & Profile Dropdown */}
@@ -154,7 +176,7 @@ export const Navbar = ({
               <span className="whitespace-nowrap">Plan Event</span>
             </button>
 
-            {/* 4. Completely Self-Contained User Profile Dropdown Pill */}
+            {/* 4. Self-Contained User Profile Dropdown Pill */}
             <div className="relative shrink-0">
               <button
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
@@ -196,6 +218,18 @@ export const Navbar = ({
                   >
                     <User className="w-4 h-4 text-campus-teal" /> My Profile & Badges
                   </button>
+
+                  {isAdmin && (
+                    <button
+                      onClick={() => {
+                        setActiveTab('users');
+                        setIsProfileMenuOpen(false);
+                      }}
+                      className="w-full text-left p-2 hover:bg-slate-800 rounded-xl font-semibold text-slate-200 flex items-center gap-2"
+                    >
+                      <UserCheck className="w-4 h-4 text-purple-400" /> Users & Role Management
+                    </button>
+                  )}
 
                   <button
                     onClick={() => {

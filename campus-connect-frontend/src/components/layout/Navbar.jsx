@@ -17,8 +17,7 @@ import {
   User,
   ShieldCheck,
   CalendarDays,
-  UserCheck,
-  Layers
+  UserCheck
 } from 'lucide-react';
 
 export const Navbar = ({ 
@@ -42,7 +41,7 @@ export const Navbar = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-2">
           
-          {/* 1. Brand Emblem & Name */}
+          {/* Brand Emblem & Name */}
           <div 
             className="flex items-center gap-2.5 cursor-pointer group shrink-0" 
             onClick={() => setActiveTab('events')}
@@ -55,12 +54,12 @@ export const Navbar = ({
                 CAMPUS<span className="text-campus-gold">CONNECT</span>
               </span>
               <span className="text-[10px] text-slate-400 font-medium tracking-wide mt-1">
-                Event Planning Platform
+                Event Planning Ecosystem
               </span>
             </div>
           </div>
 
-          {/* 2. Main Navigation Bar */}
+          {/* Main Navigation Bar */}
           <nav className="hidden lg:flex items-center gap-1 bg-slate-900/80 border border-slate-800 rounded-2xl p-1.5">
             <button
               onClick={() => setActiveTab('events')}
@@ -72,12 +71,12 @@ export const Navbar = ({
             </button>
 
             <button
-              onClick={() => setActiveTab('midhurshan')}
+              onClick={() => setActiveTab('calendar')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                activeTab === 'midhurshan' ? 'bg-campus-gold text-white shadow-gold' : 'text-amber-300 hover:bg-slate-800 hover:text-white'
+                activeTab === 'calendar' ? 'bg-campus-gold text-white shadow-gold' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
               }`}
             >
-              <Layers className="w-3.5 h-3.5 text-campus-gold" /> Midhurshan Modules
+              <CalendarDays className="w-3.5 h-3.5" /> Master Calendar
             </button>
 
             <button
@@ -106,9 +105,20 @@ export const Navbar = ({
             >
               <BarChart3 className="w-3.5 h-3.5" /> Analytics
             </button>
+
+            {isAdmin && (
+              <button
+                onClick={() => setActiveTab('users')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  activeTab === 'users' ? 'bg-campus-gold text-white shadow-gold' : 'text-purple-300 hover:bg-slate-800 hover:text-white'
+                }`}
+              >
+                <UserCheck className="w-3.5 h-3.5 text-purple-400" /> Users & Roles
+              </button>
+            )}
           </nav>
 
-          {/* 3. Compact Action Cluster & Profile Dropdown */}
+          {/* Action Cluster & Profile Dropdown */}
           <div className="flex items-center gap-2 shrink-0">
             
             {/* My Tickets */}
@@ -166,7 +176,7 @@ export const Navbar = ({
               <span className="whitespace-nowrap">Plan Event</span>
             </button>
 
-            {/* 4. Self-Contained User Profile Dropdown Pill */}
+            {/* User Profile Dropdown Pill */}
             <div className="relative shrink-0">
               <button
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
@@ -201,16 +211,6 @@ export const Navbar = ({
 
                   <button
                     onClick={() => {
-                      setActiveTab('midhurshan');
-                      setIsProfileMenuOpen(false);
-                    }}
-                    className="w-full text-left p-2 hover:bg-slate-800 rounded-xl font-semibold text-amber-300 flex items-center gap-2"
-                  >
-                    <Layers className="w-4 h-4 text-campus-gold" /> Midhurshan Modules Hub
-                  </button>
-
-                  <button
-                    onClick={() => {
                       setActiveTab('profile');
                       setIsProfileMenuOpen(false);
                     }}
@@ -218,6 +218,18 @@ export const Navbar = ({
                   >
                     <User className="w-4 h-4 text-campus-teal" /> My Profile & Badges
                   </button>
+
+                  {isAdmin && (
+                    <button
+                      onClick={() => {
+                        setActiveTab('users');
+                        setIsProfileMenuOpen(false);
+                      }}
+                      className="w-full text-left p-2 hover:bg-slate-800 rounded-xl font-semibold text-slate-200 flex items-center gap-2"
+                    >
+                      <UserCheck className="w-4 h-4 text-purple-400" /> Users & Role Management
+                    </button>
+                  )}
 
                   <button
                     onClick={() => {

@@ -16,10 +16,10 @@ export const UserRoleManagementView = () => {
       <div className="bg-nexus-gradient rounded-3xl p-8 text-white shadow-nexus flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <span className="bg-white/10 text-campus-gold border border-white/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-            Midhurshan Module 1 Integration
+            Admin Access Control
           </span>
-          <h1 className="font-heading font-extrabold text-3xl mt-2">User & Role Permission Management</h1>
-          <p className="text-sm text-blue-100 mt-1">Manage user accounts, assign roles (ADMIN, STUDENT, CLUB_HEAD, FACULTY), and configure permissions.</p>
+          <h1 className="font-heading font-extrabold text-3xl mt-2">User Directory & Role Permissions</h1>
+          <p className="text-sm text-blue-100 mt-1">Manage user accounts, assign roles (ADMIN, STUDENT, CLUB_HEAD, FACULTY), and configure security permissions.</p>
         </div>
       </div>
 

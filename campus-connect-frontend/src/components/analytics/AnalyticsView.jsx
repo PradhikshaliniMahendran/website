@@ -25,7 +25,7 @@ export const AnalyticsView = () => {
         <div>
           <div className="flex items-center gap-2 mb-2">
             <span className="bg-white/10 text-campus-gold border border-white/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-              Member 6 Engine
+              Real-Time Campus Metrics
             </span>
           </div>
           <h1 className="font-heading font-extrabold text-3xl">Campus Engagement Analytics</h1>

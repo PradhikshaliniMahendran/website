@@ -16,10 +16,10 @@ export const EventCalendarView = ({ onOpenCreateEvent }) => {
       <div className="bg-nexus-gradient rounded-3xl p-8 text-white shadow-nexus flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <span className="bg-white/10 text-campus-gold border border-white/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-            Midhurshan Module Integration
+            Campus Master Timetable
           </span>
-          <h1 className="font-heading font-extrabold text-3xl mt-2">Campus Event Master Calendar</h1>
-          <p className="text-sm text-blue-100 mt-1">Interactive timetable view for all university events, venue bookings, and conflict detection.</p>
+          <h1 className="font-heading font-extrabold text-3xl mt-2">University Event Calendar</h1>
+          <p className="text-sm text-blue-100 mt-1">Interactive schedule view for all university events, venue bookings, and conflict detection.</p>
         </div>
         <button
           onClick={onOpenCreateEvent}

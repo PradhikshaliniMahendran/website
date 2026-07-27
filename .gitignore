@@ -1,0 +1,13 @@
+# IDE & System Files
+.DS_Store
+Thumbs.db
+
+# Build & Temporary Files
+git/
+mingit.zip
+setup_git.py
+**/target/
+**/node_modules/
+**/dist/
+**/uploads/*
+!**/uploads/.gitkeep

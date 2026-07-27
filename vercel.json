@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd campus-connect-frontend && npm install && npm run build",
+  "outputDirectory": "campus-connect-frontend/dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

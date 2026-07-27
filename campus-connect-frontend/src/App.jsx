@@ -9,6 +9,7 @@ import { AttendanceScannerModal } from './components/registration/AttendanceScan
 import { ApprovalQueueModal } from './components/venues/ApprovalQueueModal';
 import { QRCodeModal } from './components/registration/QRCodeModal';
 import { LoginModal } from './components/auth/LoginModal';
+import { MidhurshanModulesView } from './components/admin/MidhurshanModulesView';
 import { EventCalendarView } from './components/events/EventCalendarView';
 import { UserRoleManagementView } from './components/admin/UserRoleManagementView';
 import { ClubFeedView } from './components/clubs/ClubFeedView';
@@ -17,7 +18,7 @@ import { MyTicketsView } from './components/registration/MyTicketsView';
 import { CertificatesView } from './components/certificates/CertificatesView';
 import { AnalyticsView } from './components/analytics/AnalyticsView';
 import { ProfileView } from './components/auth/ProfileView';
-import { Search, Sparkles, AlertCircle, CheckCircle2, Ticket, Database, ShieldCheck } from 'lucide-react';
+import { Search, Sparkles, AlertCircle, CheckCircle2, Ticket, Database, ShieldCheck, Layers, CalendarDays, UserCheck } from 'lucide-react';
 
 export function App() {
   const { currentUser, isLoginModalOpen, setIsLoginModalOpen, mongoConnected } = useAuth();
@@ -70,7 +71,7 @@ export function App() {
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         
-        {/* MongoDB Connection Status Bar */}
+        {/* MongoDB Connectivity & Integration Banner */}
         <div className={`p-4 rounded-2xl border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs ${
           mongoConnected
             ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
@@ -80,23 +81,24 @@ export function App() {
             <Database className={`w-5 h-5 shrink-0 ${mongoConnected ? 'text-emerald-600' : 'text-slate-500'}`} />
             <div>
               <span className="font-bold">
-                {mongoConnected ? 'Connected to Spring Boot & MongoDB Backend' : 'Running in Interactive Event Engine Mode'}
+                {mongoConnected ? 'Connected to Spring Boot & MongoDB Backend' : 'Integrated Event Ecosystem Active'}
               </span>
               <p className="text-[11px] opacity-80">
-                {mongoConnected
-                  ? 'All registrations, event creations, and certificates are synced with MongoDB 6.0.'
-                  : 'Full state engine active. Midhurshan & Shalini modules combined. Connect Spring Boot backend for DB sync.'}
+                Midhurshan Modules (User & Roles, Event Calendar, Venue Approvals) & Shalini Modules (QR Tickets, Certificates, Analytics) fully combined.
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <span className="bg-white border text-[11px] font-bold px-3 py-1 rounded-xl shadow-xs flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-campus-royal" /> {currentUser?.name} ({currentUser?.role})
-            </span>
+            <button
+              onClick={() => setActiveTab('midhurshan')}
+              className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-[11px] px-3 py-1.5 rounded-xl shadow-xs flex items-center gap-1"
+            >
+              <Layers className="w-3.5 h-3.5" /> View Midhurshan Modules
+            </button>
             <button
               onClick={() => setIsLoginModalOpen(true)}
-              className="bg-campus-royal text-white font-bold text-[11px] px-3 py-1 rounded-xl shadow-xs hover:bg-campus-ocean transition-colors"
+              className="bg-campus-royal text-white font-bold text-[11px] px-3 py-1.5 rounded-xl shadow-xs hover:bg-campus-ocean transition-colors"
             >
               Authenticate Account
             </button>
@@ -127,10 +129,10 @@ export function App() {
                     + Plan & Propose New Event
                   </button>
                   <button
-                    onClick={() => setActiveTab('my-tickets')}
+                    onClick={() => setActiveTab('midhurshan')}
                     className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-5 py-3 rounded-xl border border-white/20 transition-all flex items-center gap-1.5"
                   >
-                    <Ticket className="w-4 h-4 text-campus-teal" /> My Event Tickets
+                    <Layers className="w-4 h-4 text-campus-gold" /> Midhurshan Features Hub
                   </button>
                 </div>
               </div>
@@ -197,6 +199,7 @@ export function App() {
         )}
 
         {/* OTHER INTEGRATED TABS */}
+        {activeTab === 'midhurshan' && <MidhurshanModulesView onOpenCreateEvent={() => setIsCreateOpen(true)} />}
         {activeTab === 'calendar' && <EventCalendarView onOpenCreateEvent={() => setIsCreateOpen(true)} />}
         {activeTab === 'clubs' && <ClubFeedView />}
         {activeTab === 'venues' && <VenuesView />}
